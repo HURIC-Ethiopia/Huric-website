@@ -380,6 +380,33 @@ nav ul li a.active {
         grid-template-columns: 1fr;
     }
 }
+/* ===== Social Icons ===== */
+
+.social-icons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #00bfff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00bfff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: #00bfff;
+    color: #071c2f;
+    transform: translateY(-5px);
+}
 
     </style>
 </head>
@@ -418,6 +445,11 @@ nav ul li a.active {
 
             <a href="#" class="btn outline">Learn More</a>
         </div>
+          <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+</div>
     </div>
 
     <div class="hero-image">
