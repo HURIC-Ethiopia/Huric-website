@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Website</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Your website content -->
+
+  <!-- Firebase SDK scripts & initialization -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyATg1SDF2wG08hRCzEOZv_nHxWU33bKaNs",
+      authDomain: "huric-caht.firebaseapp.com",
+      projectId: "huric-caht",
+      storageBucket: "huric-caht.appspot.com",
+      messagingSenderId: "849102618814",
+      appId: "1:84910261814:web:bbac8911974d7f62129eef",
+      measurementId: "G-S6LJLZ2MJJ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const database = firebase.database();
+  </script>
+
+  <!-- Your chatroom or other JS scripts -->
+  <script src="script.js"></script>
+
+</body>
+</html>
