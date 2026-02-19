@@ -407,15 +407,92 @@ nav ul li a.active {
     color: #071c2f;
     transform: translateY(-5px);
 }
+/* ================= HAMBURGER MENU ================= */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background: #00bfff;
+    border-radius: 5px;
+    transition: 0.4s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #071c2f;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease;
+        border-left: 1px solid #00bfff30;
+        z-index: 1000;
+    }
+}
+
+    nav ul {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    /* Animate to X */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
 
     </style>
 </head>
 <body>
-
 <header>
     <div class="logo">HURIC<span>.</span></div>
 
-    <nav>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav id="nav-menu">
         <ul>
             <li><a href="#" class="active">Home</a></li>
            <li><a href="#about">About</a></li>
@@ -423,6 +500,11 @@ nav ul li a.active {
             <li><a href="#">Team</a></li>
            <li><a href="mailto:huricofficial@gmail.com?subject=Hello HURIC&body=I am interested in joining.">Email Us</a></li>
         </ul>
+    </nav>
+</header>
+
+      
+            
     </nav>
 </header>
 
@@ -515,6 +597,22 @@ nav ul li a.active {
 
 </section>
 
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
 
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  // Close menu when link is clicked
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    });
+  });
+</script>
 </body>
 </html>
