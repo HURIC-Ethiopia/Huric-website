@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Your Website</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
-
+  <meta charset="UTF-8">
+  <title>Huric Chatroom</title>
+  <link rel="stylesheet" href="style.css">
   <style>
+    /* Chatroom styling */
     #chat {
-  width: 300px;
-  margin: 50px auto;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-#messages {
-  list-style: none;
-  padding: 0;
-  max-height: 300px;
-  overflow-y: auto;
-}
-#messages li {
-  margin: 5px 0;
-}
-#messageInput {
-  width: 80%;
-  padding: 5px;
-}
-#sendBtn {
-  width: 18%;
-  padding: 5px;
-}
-
+      width: 350px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    #messages {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    #messages li {
+      margin: 5px 0;
+      padding: 5px;
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    #messageInput {
+      width: 75%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #sendBtn {
+      width: 20%;
+      padding: 8px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #sendBtn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Your website content -->
-<div id="chat">
-  <ul id="messages"></ul>
-  <input id="messageInput" placeholder="Type a message..." />
-  <button id="sendBtn">Send</button>
-</div>
+  <div id="chat">
+    <h2>Huric Chatroom</h2>
+    <ul id="messages"></ul>
+    <input id="messageInput" placeholder="Type a message..." />
+    <button id="sendBtn">Send</button>
+  </div>
 
-  <!-- Firebase SDK scripts & initialization -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <script>
+    // Firebase configuration (your project)
     const firebaseConfig = {
       apiKey: "AIzaSyATg1SDF2wG08hRCzEOZv_nHxWU33bKaNs",
       authDomain: "huric-caht.firebaseapp.com",
@@ -57,14 +73,39 @@
       appId: "1:84910261814:web:bbac8911974d7f62129eef",
       measurementId: "G-S6LJLZ2MJJ"
     };
+
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     const database = firebase.database();
+
+    // Chatroom functionality
+    const messageInput = document.getElementById("messageInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const messagesList = document.getElementById("messages");
+
+    // Send message
+    sendBtn.addEventListener("click", () => {
+      const msg = messageInput.value.trim();
+      if (!msg) return;
+
+      database.ref("messages").push({
+        text: msg,
+        timestamp: Date.now()
+      });
+
+      messageInput.value = "";
+    });
+
+    // Receive messages in real-time
+    database.ref("messages").on("child_added", (snapshot) => {
+      const message = snapshot.val();
+      const li = document.createElement("li");
+      li.textContent = message.text;
+      messagesList.appendChild(li);
+      messagesList.scrollTop = messagesList.scrollHeight; // auto scroll
+    });
   </script>
 
-  <!-- Your chatroom or other JS scripts -->
-  <script src="script.js"></script>
-
-  
 </body>
 </html>
