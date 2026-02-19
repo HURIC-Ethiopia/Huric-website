@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ================= EVENTS SECTION ================= */
+
+
+.events {
+    padding: 120px 10%;
+    background: #0a2238;
+}
+
+.events-text {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.events-text h2 {
+    font-size: 40px;
+}
+
+.events-text span {
+    color: #00bfff;
+}
+
+.events-text p {
+    color: #aaa;
+    max-width: 700px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+}
+
+.events-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+/* Events Info Box */
+
+.events-info {
+    background: #071c2f;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #00bfff30;
+    flex: 1;
+    min-width: 300px;
+}
+
+.events-info h3 {
+    margin-bottom: 20px;
+    color: #00bfff;
+}
+
+.events-info ul {
+    list-style: none;
+}
+
+.events-info ul li {
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+
+/* ===== 3D Cube ===== */
+
+.cube-wrapper {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cube {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: rotateCube 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: #0a2238;
+    border: 2px solid #00bfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00bfff;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+}
+
+/* Position Faces */
+
+.front  { transform: rotateY(0deg) translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+/* Animation */
+
+@keyframes rotateCube {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Hover Effect - Stop & Glow */
+
+.cube:hover {
+    animation-play-state: paused;
+}
+
+.cube:hover .face {
+    box-shadow: 0 0 20px #00bfff;
+}
+
+/* Responsive */
+
+@media(max-width: 768px) {
+    .cube {
+        width: 150px;
+        height: 150px;
+    }
+
+    .face {
+        width: 150px;
+        height: 150px;
+        font-size: 14px;
+    }
+
+    .front  { transform: rotateY(0deg) translateZ(75px); }
+    .back   { transform: rotateY(180deg) translateZ(75px); }
+    .right  { transform: rotateY(90deg) translateZ(75px); }
+    .left   { transform: rotateY(-90deg) translateZ(75px); }
+    .top    { transform: rotateX(90deg) translateZ(75px); }
+    .bottom { transform: rotateX(-90deg) translateZ(75px); }
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #071c2f;
+    padding: 70px 10% 20px;
+    border-top: 1px solid #00bfff30;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer h2 span {
+    color: #00bfff;
+}
+
+.footer p {
+    color: #aaa;
+}
+
+.footer-links,
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #00bfff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #00bfff20;
+    color: #777;
+}
+
+/* Responsive Footer */
+
+@media(max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+#topBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    background: #00bfff;
+    color: #071c2f;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+    background: #009acd;
+}
+
+    </style>
+</head>
+<body>
+   <section id="events" class="events">
+  <div class="events-container">
+
+    <div class="events-text">
+      <h2>Our <span>Events</span></h2>
+      <p>
+        HURIC organizes robotics competitions, AI workshops, innovation challenges,
+        and collaborative engineering events designed to develop real-world skills.
+      </p>
+    </div>
+
+    <div class="events-content">
+      
+      <div class="cube-wrapper">
+        <div class="cube">
+          <div class="face front">Robotics</div>
+          <div class="face back">AI</div>
+          <div class="face right">Workshops</div>
+          <div class="face left">Competitions</div>
+          <div class="face top">Innovation</div>
+          <div class="face bottom">HURIC</div>
+        </div>
+      </div>
+
+      <div class="events-info">
+        <h3>Upcoming Activities</h3>
+        <ul>
+          <li>🤖 Robotics Training Camp</li>
+          <li>🧠 Artificial Intelligence Workshop</li>
+          <li>🏆 National Robotics Competition</li>
+          <li>💡 Innovation & Startup Challenge</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const cube = document.querySelector('.cube');
+
+  cube.addEventListener('mouseenter', () => {
+    cube.style.animationPlayState = 'paused';
+  });
+
+  cube.addEventListener('mouseleave', () => {
+    cube.style.animationPlayState = 'running';
+  });
+</script>
+<button id="topBtn">↑</button>
+
+<script>
+  const topBtn = document.getElementById("topBtn");
+
+  window.onscroll = function () {
+    topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  };
+
+  topBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
+
+</body>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-logo">
+      <h2>HURIC<span>.</span></h2>
+      <p>Hawassa University Robotics & Innovation Club</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#">Team</a>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>Email: huricofficial@gmail.com</p>
+      <p>Hawassa University, Ethiopia</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 HURIC. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</html>
